@@ -1,0 +1,83 @@
+############################
+# Unity Generated Folders  #Capstone 174.
+############################
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+
+############################
+# User-specific settings   #
+############################
+UserSettings/
+
+############################
+# Auto-generated project files #
+############################
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+############################
+# IDE folders              #
+############################
+.vs/
+.vscode/
+.idea/
+
+############################
+# OS generated files       #
+############################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+############################
+# Crash reports            #
+############################
+sysinfo.txt
+*.stacktrace
+
+############################
+# Addressables (optional cache) #
+############################
+ServerData/
+
+############################
+# Build artifacts          #
+############################
+*.apk
+*.aab
+*.unitypackage
+*.app
+*.exe
+*.ipa
+
+############################
+# IL2CPP builds            #prolly not gonna compile to il2cpp but...
+############################
+il2cppOutput/
+
+############################
+# Debug symbols            #
+############################
+*.pdb
+
+############################
+# IMPORTANT: Keep these    #
+############################
+#! Do NOT ignore:
+#! Assets/
+#! Packages/
+#! ProjectSettings/
+#! *.meta
