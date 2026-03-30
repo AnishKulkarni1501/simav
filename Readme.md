@@ -8,8 +8,8 @@
 <p>none as of current but please update if u use anything</p>
 
 # Project Setup
-Clone the repository
-Open Unity Hub
-Add the project folder
-Open using Unity 6000.3.10f1
-Let Unity reimport assets (first launch may take time)
+Clone the repository<br>
+Open Unity Hub<br>
+Add the project folder<br>
+Open using Unity 6000.3.10f1<br>
+Let Unity reimport assets (first launch may take time)<br>
