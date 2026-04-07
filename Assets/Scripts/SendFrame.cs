@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class SendFrame : MonoBehaviour
 {
-    public Camera cam;
     public string serverUrl = "http://127.0.0.1:5000/detect";
+
+    public BoundingBoxDrawer drawer;
+    public RawImage display;
 
     void Start()
     {
@@ -16,27 +19,31 @@ public class SendFrame : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f); // slower for testing
+            yield return new WaitForSeconds(1f);
 
-            // Create RenderTexture
-            RenderTexture rt = new RenderTexture(640, 640, 24);
-            cam.targetTexture = rt;
+            if (display == null || display.texture == null)
+            {
+                Debug.LogError("No image assigned to RawImage!");
+                yield break;
+            }
 
-            // Capture image
-            Texture2D tex = new Texture2D(640, 640, TextureFormat.RGB24, false);
-            cam.Render();
-            RenderTexture.active = rt;
+            // ✅ Get texture from RawImage
+            Texture2D sourceTex = display.texture as Texture2D;
 
-            tex.ReadPixels(new Rect(0, 0, 640, 640), 0, 0);
+            if (sourceTex == null)
+            {
+                Debug.LogError("Texture is not readable or not Texture2D!");
+                yield break;
+            }
+
+            // ✅ Copy texture (safe way)
+            Texture2D tex = new Texture2D(sourceTex.width, sourceTex.height, TextureFormat.RGB24, false);
+            tex.SetPixels(sourceTex.GetPixels());
             tex.Apply();
 
-            cam.targetTexture = null;
-            RenderTexture.active = null;
-
-            // Convert to JPG
+            // ✅ Send to server
             byte[] bytes = tex.EncodeToJPG();
 
-            // Send to server
             WWWForm form = new WWWForm();
             form.AddBinaryData("image", bytes, "frame.jpg", "image/jpeg");
 
@@ -46,15 +53,22 @@ public class SendFrame : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("SERVER RESPONSE: " + www.downloadHandler.text);
+                string json = www.downloadHandler.text;
+                Debug.Log("SERVER RESPONSE: " + json);
+
+                Detection[] detections = JsonHelper.FromJson<Detection>(json);
+
+                if (drawer != null)
+                {
+                    drawer.DrawBoxes(detections, tex.width, tex.height);
+                }
             }
             else
             {
                 Debug.LogError("ERROR: " + www.error);
             }
 
-            Destroy(rt);
-            Destroy(tex);
+            Destroy(tex); // safe cleanup
         }
     }
 }
