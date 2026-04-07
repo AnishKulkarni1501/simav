@@ -4,56 +4,89 @@ using Unity.Barracuda;
 public class ObjectDetection : MonoBehaviour
 {
     public NNModel modelAsset;
+    public RenderTexture inputTexture;
 
     private Model runtimeModel;
     private IWorker worker;
 
-    public RenderTexture inputTexture;
-
-    private Tensor inputTensor;
-
-    private int numClasses = 5;
-    private float confidenceThreshold = 0.5f;
-
-    private string[] classNames = { "person", "car", "bike", "truck", "bus" };
+    private int numClasses = 80;
+    private float confidenceThreshold = 0.4f;
 
     void Start()
     {
-        runtimeModel = ModelLoader.Load(modelAsset.modelData.Value);  // ✅ Pass raw bytes
+        // ✅ FIXED: Use Barracuda ModelLoader
+        runtimeModel = Unity.Barracuda.ModelLoader.Load(modelAsset);
         worker = WorkerFactory.CreateWorker(WorkerFactory.Type.Auto, runtimeModel);
 
         Debug.Log("Model loaded successfully");
     }
 
     void Update()
+{
+    RenderTexture resized = RenderTexture.GetTemporary(640, 640);
+    Graphics.Blit(inputTexture, resized);
+
+    Tensor inputTensor = Preprocess(resized);
+
+    worker.Execute(inputTensor);
+
+    Tensor output = worker.CopyOutput(); // ✅ FIX
+
+    Debug.Log($"📐 Output shape: {output.shape}");
+
+    ProcessOutput(output);
+
+    inputTensor.Dispose();
+    output.Dispose();
+
+    worker.FlushSchedule(); // ✅ FIX
+
+    RenderTexture.ReleaseTemporary(resized);
+}
+
+    // ✅ Preprocess → NCHW
+    Tensor Preprocess(RenderTexture rt)
     {
-        inputTensor = new Tensor(inputTexture, 3);
+        Texture2D tex = new Texture2D(rt.width, rt.height, TextureFormat.RGB24, false);
 
-        worker.Execute(inputTensor);
+        RenderTexture.active = rt;
+        tex.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+        tex.Apply();
+        RenderTexture.active = null;
 
-        Tensor output = worker.PeekOutput();
+        Color[] pixels = tex.GetPixels();
 
-        ProcessOutput(output);
+        Tensor tensor = new Tensor(1, 3, rt.height, rt.width);
 
-        inputTensor.Dispose();
-        output.Dispose();
+        for (int i = 0; i < pixels.Length; i++)
+        {
+            Color c = pixels[i];
+
+            int x = i % rt.width;
+            int y = i / rt.width;
+
+            tensor[0, 0, y, x] = c.r;
+            tensor[0, 1, y, x] = c.g;
+            tensor[0, 2, y, x] = c.b;
+        }
+
+        Destroy(tex); // ✅ prevent memory leak
+
+        return tensor;
     }
 
     void ProcessOutput(Tensor output)
     {
-        int numPredictions = 8400;
-
-        float imgWidth = 640f;
-        float imgHeight = 640f;
+        int numPredictions = output.shape[2]; // assuming (1,1,25200,85)
 
         int printed = 0;
 
         for (int i = 0; i < numPredictions; i++)
         {
-            float x = Sigmoid(output[0, 0, i, 0]);
-            float y = Sigmoid(output[0, 0, i, 1]);
-            float w = Sigmoid(output[0, 0, i, 2]);
-            float h = Sigmoid(output[0, 0, i, 3]);
+            float x = output[0, 0, i, 0];
+            float y = output[0, 0, i, 1];
+            float w = output[0, 0, i, 2];
+            float h = output[0, 0, i, 3];
 
             float objConf = Sigmoid(output[0, 0, i, 4]);
 
@@ -73,20 +106,21 @@ public class ObjectDetection : MonoBehaviour
 
             float confidence = objConf * maxClass;
 
+            // Debug first few
+            if (i < 5)
+            {
+                Debug.Log($"[DEBUG] objConf: {objConf:F4}, class: {maxClass:F4}, final: {confidence:F4}");
+            }
+
             if (confidence > confidenceThreshold && printed < 5)
             {
                 printed++;
 
-                float xMin = (x - w / 2f) * imgWidth;
-                float yMin = (y - h / 2f) * imgHeight;
+                float xMin = x - w / 2f;
+                float yMin = y - h / 2f;
 
-                float boxWidth = w * imgWidth;
-                float boxHeight = h * imgHeight;
-
-                yMin = imgHeight - yMin;
-
-                Debug.Log($"Detected: {classNames[classId]} | Conf: {confidence:F2}");
-                Debug.Log($"Box → x:{xMin:F1}, y:{yMin:F1}, w:{boxWidth:F1}, h:{boxHeight:F1}");
+                Debug.Log($"✅ Detected: {GetClassName(classId)} | Conf: {confidence:F2}");
+                Debug.Log($"📦 Box → x:{xMin:F1}, y:{yMin:F1}, w:{w:F1}, h:{h:F1}");
             }
         }
     }
@@ -96,8 +130,21 @@ public class ObjectDetection : MonoBehaviour
         return 1f / (1f + Mathf.Exp(-x));
     }
 
+    string GetClassName(int id)
+    {
+        switch (id)
+        {
+            case 0: return "person";
+            case 2: return "car";
+            case 3: return "motorcycle";
+            case 5: return "bus";
+            case 7: return "truck";
+            default: return "other";
+        }
+    }
+
     void OnDestroy()
     {
-        worker.Dispose();
+        worker?.Dispose();
     }
 }
