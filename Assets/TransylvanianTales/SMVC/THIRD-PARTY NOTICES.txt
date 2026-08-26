@@ -1,0 +1,42 @@
+THIRD-PARTY NOTICES
+
+
+----------------------------------------
+Overview
+----------------------------------------
+
+This asset includes third-party content used for demonstration purposes.
+
+Each third-party asset has its own detailed notice file containing:
+
+- Author information
+- Source links
+- Permissions
+- License terms
+
+
+----------------------------------------
+Included Third-Party Assets
+----------------------------------------
+
+1. Car Models (Demo Content)
+
+Location:
+/Assets/TransylvanianTales/SMVC/Car/
+
+Detailed Notice:
+/Assets/TransylvanianTales/SMVC/Car/THIRD-PARTY NOTICES.txt
+
+
+----------------------------------------
+Notes
+----------------------------------------
+
+All third-party assets are included strictly as demonstration content.
+
+They are governed by:
+
+- The Unity Asset Store Standard EULA
+- Any additional permissions described in their respective notice files
+
+Please review each detailed notice file for full information.

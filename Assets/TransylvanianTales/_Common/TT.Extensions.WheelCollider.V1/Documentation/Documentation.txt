@@ -1,0 +1,101 @@
+WHEEL COLLIDER EXTENSIONS
+
+
+----------------------------------------
+Author
+----------------------------------------
+
+Transylvanian Tales
+
+
+----------------------------------------
+Purpose
+----------------------------------------
+
+The WheelColliderExtensions utility provides a simple way to configure WheelCollider components based on visual wheel geometry.
+
+It reduces setup time and ensures consistency between colliders and rendered meshes.
+
+
+----------------------------------------
+Core Concept
+----------------------------------------
+
+WheelCollider components require manual tuning to match visual wheels.
+
+This utility:
+
+- Extracts size from renderer bounds
+- Adjusts collider radius accordingly
+- Aligns collider position to match the mesh
+
+This ensures visual and physical alignment.
+
+
+----------------------------------------
+Setup
+----------------------------------------
+
+Configures a WheelCollider using a Renderer.
+
+Behavior:
+
+- Reads bounds from the renderer
+- Calculates radius based on vertical extents
+- Adjusts for transform scale
+- Sets collider radius
+- Aligns collider position to bounds center
+
+If the collider has a parent:
+
+- Position is set in local space
+
+If no parent exists:
+
+- Position is set in world space
+
+
+----------------------------------------
+Editor Tool
+----------------------------------------
+
+Provides a simple interface for configuring wheel colliders.
+
+Features:
+
+- Assign WheelCollider and Renderer references
+- One-click setup execution
+- Undo support for safe editing
+- Accessible from the Tools menu
+
+Intended for editor-time workflows.
+
+
+----------------------------------------
+Performance Considerations
+----------------------------------------
+
+- Minimal computational cost
+- Suitable for both editor and runtime use
+- Not intended for continuous updates
+
+
+----------------------------------------
+Extensibility
+----------------------------------------
+
+This utility is intentionally minimal and can be extended as needed.
+
+Possible extensions include:
+
+- Automatic suspension configuration
+- Batch setup for multiple wheels
+- Custom alignment offsets
+- Integration with vehicle setup systems
+
+
+----------------------------------------
+Summary
+----------------------------------------
+
+WheelColliderExtensions provides a fast and reliable way to align WheelColliders with visual wheels, improving workflow efficiency and consistency.

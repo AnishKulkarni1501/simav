@@ -1,0 +1,32 @@
+CHANGELOG
+
+
+----------------------------------------
+Packages
+----------------------------------------
+
+SMVC is built using multiple internal packages:
+
+- TT.Core.ReadOnlyAttribute.V1
+- TT.Core.MonoBehaviourComponentSystem.V1
+- TT.SMVC.V1
+- TT.Extensions.WheelCollider.V1
+
+You can find them at:
+/Assets/TransylvanianTales/_Common/<PackageName>/CHANGELOG
+
+Each package maintains its own changelog.
+These changelogs contain lower-level and package-specific changes.
+
+
+----------------------------------------
+CHANGELOG
+----------------------------------------
+
+----------------------------------------
+Version: 1.0.0
+Date: 2026-03-18
+----------------------------------------
+
+Added
+- Initial release

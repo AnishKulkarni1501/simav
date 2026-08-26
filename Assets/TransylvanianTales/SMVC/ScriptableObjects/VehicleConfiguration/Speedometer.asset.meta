@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b8bd11fdf7935224c842fa191a4ae3e5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/ScriptableObjects/VehicleConfiguration/Speedometer.asset
+  uploadId: 891574

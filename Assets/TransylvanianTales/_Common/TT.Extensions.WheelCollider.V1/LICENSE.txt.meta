@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 119721617978d2e43a9372bc8523d28f
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/_Common/TT.Extensions.WheelCollider.V1/LICENSE.txt
+  uploadId: 891574

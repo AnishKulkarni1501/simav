@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cd54cce3cefda7c4cb2235f3f2137c0d
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/_Common/TT.SMVC.V1/LICENSE.txt
+  uploadId: 891574

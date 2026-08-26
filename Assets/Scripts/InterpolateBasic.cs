@@ -6,18 +6,23 @@ public class InterpolateBasic : MonoBehaviour
     public float rotationSpeed = 5f;
 
     public Transform[] waypoints;
-
     public Transform spawnloc;
-    public bool minus90mod;
+
+    [Header("Orientation")]
+    public float incorrectAngle = -90f;
+    public bool incorrectOrien;
+
     private int currentWaypoint;
     private bool stopped;
 
     public void Start()
     {
-        if(spawnloc.position != null){
-         transform.position = spawnloc.position;
+        if (spawnloc != null)
+        {
+            transform.position = spawnloc.position;
         }
     }
+
     public void InitializeAgent()
     {
         currentWaypoint = 0;
@@ -37,12 +42,9 @@ public class InterpolateBasic : MonoBehaviour
         if (waypoints == null || waypoints.Length == 0)
             return;
 
-        Transform target =
-            waypoints[currentWaypoint];
+        Transform target = waypoints[currentWaypoint];
 
-        Vector3 direction =
-            target.position - transform.position;
-
+        Vector3 direction = target.position - transform.position;
         direction.y = 0f;
 
         if (direction.magnitude < 3f)
@@ -59,33 +61,45 @@ public class InterpolateBasic : MonoBehaviour
 
         direction.Normalize();
 
-        transform.position +=
-            direction * speed * Time.deltaTime;
+        // Move
+        transform.position += direction * speed * Time.deltaTime;
 
-        Quaternion targetRotation = minus90mod? Quaternion.LookRotation(direction*(-90f)) :  Quaternion.LookRotation(direction);
+        // Get rotation toward waypoint
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        transform.rotation =
-            Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
+        // Apply orientation correction
+        if (incorrectOrien)
+        {
+            targetRotation *= Quaternion.Euler(0f, incorrectAngle, 0f);
+        }
+
+        // Smooth rotation
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            rotationSpeed * Time.deltaTime
+        );
     }
 
     public void SetDestination(Vector3 destination)
     {
-        // Simple implementation:
-        // create a temporary direction toward destination
-
-        Vector3 direction =
-            destination - transform.position;
-
+        Vector3 direction = destination - transform.position;
         direction.y = 0f;
 
-        if (direction != Vector3.zero)
+        if (direction.sqrMagnitude > 0.001f)
         {
-            transform.rotation =
-                Quaternion.LookRotation(direction);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            if (incorrectOrien)
+            {
+                targetRotation *= Quaternion.Euler(
+                    0f,
+                    incorrectAngle,
+                    0f
+                );
+            }
+
+            transform.rotation = targetRotation;
         }
     }
 

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 303babd18503cb143b99149cffe95c04
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/_Common/TT.SMVC.V1/Runtime/Speedometer/SpeedometerSystem.cs
+  uploadId: 891574

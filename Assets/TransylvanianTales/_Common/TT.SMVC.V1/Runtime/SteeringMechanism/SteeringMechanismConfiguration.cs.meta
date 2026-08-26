@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e9d870bf0ed28464986863be37b23a2c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/_Common/TT.SMVC.V1/Runtime/SteeringMechanism/SteeringMechanismConfiguration.cs
+  uploadId: 891574

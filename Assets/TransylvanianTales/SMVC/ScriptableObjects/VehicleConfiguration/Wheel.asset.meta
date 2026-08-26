@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 85888258a6a1ab94281c6092e2612a11
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/ScriptableObjects/VehicleConfiguration/Wheel.asset
+  uploadId: 891574

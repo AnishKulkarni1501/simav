@@ -17,7 +17,7 @@ namespace Barmetler.RoadSystem
         {
             if (road == this.road) return;
             if (this.road && (this.isStart ? this.road.start : this.road.end) == this)
-                throw new Exception("Already connected to different road!");
+                
             this.road = road;
             this.isStart = isStart;
             if (isStart) road.start = this;

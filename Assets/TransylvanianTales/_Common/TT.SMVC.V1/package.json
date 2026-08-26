@@ -1,0 +1,11 @@
+{
+  "name": "com.transylvaniantales.smvc.v1",
+  "version": "1.0.0",
+  "displayName": "TT.SMVC.V1",
+  "unity": "2022.3",
+  "dependencies":
+  {
+    "com.transylvaniantales.core.readonlyattribute.v1",
+    "com.transylvaniantales.core.monobehaviourcomponentsystem.v1": "1.0.0"
+  }
+}

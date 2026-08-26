@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 47aff14ad35d4a4498043d8f216448bd
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/_Common/TT.Core.ReadOnlyAttribute.V1/CHANGELOG.txt
+  uploadId: 891574

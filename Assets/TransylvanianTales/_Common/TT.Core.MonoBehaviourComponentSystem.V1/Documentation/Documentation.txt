@@ -1,0 +1,209 @@
+MONOBEHAVIOUR COMPONENT SYSTEM
+
+
+----------------------------------------
+Author
+----------------------------------------
+
+Transylvanian Tales
+
+
+----------------------------------------
+Purpose
+----------------------------------------
+
+The MonoBehaviour Component System provides a structured way to separate data and logic in Unity projects.
+
+Components are responsible for storing data and handling Unity callbacks, while systems process and operate on those components.
+
+This improves modularity, scalability, and maintainability.
+
+
+----------------------------------------
+Core Architecture
+----------------------------------------
+
+The system is built around three main elements:
+
+- Components
+- Component Registries
+- Systems
+
+Flow:
+
+Components -> Registry -> Systems
+
+Components register themselves, and systems access them through registries.
+
+
+----------------------------------------
+Components
+----------------------------------------
+
+Components inherit from:
+
+    ComponentBase<TComponent>
+
+Responsibilities:
+
+- Store data
+- React to Unity events (collisions, triggers, etc.)
+- Automatically register and unregister themselves
+
+Each component type has its own static registry.
+
+
+----------------------------------------
+Component Registry
+----------------------------------------
+
+The ComponentRegistry<TComponent> manages all active components of a specific type.
+
+Features:
+
+- Tracks all registered components
+- Provides iteration over components
+- Exposes lifecycle events:
+  - OnComponentRegistered
+  - OnBeforeComponentUnregistered
+  - OnAfterComponentUnregistered
+- Supports event-based communication
+
+The registry acts as the central access point for systems.
+
+
+----------------------------------------
+Systems
+----------------------------------------
+
+Systems inherit from:
+    
+    GenericSystemBase<T>
+
+Responsibilities:
+
+- Contain gameplay logic
+- Process components from registries
+- Optionally react to events
+
+GenericSystemBase provides:
+
+- Singleton-style access (Instance)
+- Optional persistence across scenes
+
+
+----------------------------------------
+Execution Flow
+----------------------------------------
+
+1. A component is enabled
+2. It registers itself in its registry
+3. Systems access the registry
+4. Systems process components (Update, FixedUpdate, events, etc.)
+
+This creates a clear separation between data and behavior.
+
+
+----------------------------------------
+Event System
+----------------------------------------
+
+The system includes a lightweight event mechanism.
+
+How it works:
+
+- Events implement IComponentEvent
+- Components publish events via the registry
+- Systems subscribe to specific event types
+
+Example use cases:
+
+- Collision handling
+- Input forwarding
+- State changes
+
+This avoids direct references between components and systems.
+
+
+----------------------------------------
+Bootstrapper
+----------------------------------------
+
+The SystemBootstrapper is responsible for instantiating systems.
+
+Behavior:
+
+- Executes early in the lifecycle
+- Instantiates all assigned system prefabs in Awake
+
+Benefits:
+
+- Centralized system setup
+- Cleaner scene hierarchy
+- Controlled initialization order
+
+
+----------------------------------------
+Persistence
+----------------------------------------
+
+Systems can persist between scenes.
+
+- Controlled via PersistBetweenScenes
+- Uses DontDestroyOnLoad internally
+
+This allows systems to maintain state across scene transitions.
+
+
+----------------------------------------
+Design Principles
+----------------------------------------
+
+This system follows several key principles:
+
+- Separation of concerns (data vs logic)
+- Decoupling via registries and events
+- Minimalism and flexibility
+- Compatibility with standard Unity workflows
+
+It acts as a bridge between:
+
+- Traditional MonoBehaviour architecture
+- Data-oriented design patterns
+
+
+----------------------------------------
+Limitations
+----------------------------------------
+
+- Not a full ECS replacement (no memory layout optimizations)
+- Relies on MonoBehaviour lifecycle (not fully data-oriented)
+- Requires discipline to keep components "data-focused"
+
+
+----------------------------------------
+Extensibility
+----------------------------------------
+
+The system is intentionally minimal and can be extended with:
+
+- Custom update pipelines (manual system execution)
+- System ordering / scheduling
+- Dependency injection between systems
+- Performance optimizations (caching, batching, etc.)
+
+
+----------------------------------------
+Namespace
+----------------------------------------
+
+TT.Core.MonoBehaviourComponentSystem.V1
+
+
+----------------------------------------
+Summary
+----------------------------------------
+
+The MonoBehaviour Component System provides a clean and modular architecture for Unity projects by separating components and systems.
+
+It enables scalable gameplay code while remaining simple, flexible, and familiar to Unity developers.

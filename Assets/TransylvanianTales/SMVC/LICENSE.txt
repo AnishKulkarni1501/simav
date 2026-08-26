@@ -1,0 +1,51 @@
+LICENSE
+
+
+----------------------------------------
+Packages
+----------------------------------------
+
+SMVC is built using multiple internal packages:
+
+- TT.Core.ReadOnlyAttribute.V1
+- TT.Core.MonoBehaviourComponentSystem.V1
+- TT.SMVC.V1
+- TT.Extensions.WheelCollider.V1
+
+You can find them at:
+/Assets/TransylvanianTales/_Common/<PackageName>/LICENSE
+
+Each package maintains its own license.
+These licenses apply to the respective package code and may contain additional details or clarifications.
+
+
+----------------------------------------
+Third-Party Content
+----------------------------------------
+
+This asset includes third-party content.
+
+For details about third-party assets, see:
+/Assets/TransylvanianTales/SMVC/THIRD-PARTY NOTICES.txt
+
+
+----------------------------------------
+LICENSE
+----------------------------------------
+
+This asset is distributed under the Unity Asset Store Standard EULA.
+
+You may use this asset in accordance with the terms defined by the Unity Asset Store.
+
+This includes:
+
+- Use in commercial and personal projects
+- Modification for your own projects
+- Integration into games and applications
+
+Restrictions include (but are not limited to):
+
+- Redistribution of the asset files as standalone content
+- Reselling or sublicensing the asset outside of a larger project
+
+For full details, refer to the Unity Asset Store EULA.

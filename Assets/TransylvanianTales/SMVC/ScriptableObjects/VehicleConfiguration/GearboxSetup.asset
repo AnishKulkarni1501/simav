@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9308aca88faeebd46a02dae8083777a2, type: 3}
+  m_Name: GearboxSetup
+  m_EditorClassIdentifier: 
+  gearbox: {fileID: 11400000, guid: 4944c0511d1cf8349acb1970844f45d7, type: 2}
+  speedometer: {fileID: 11400000, guid: b8bd11fdf7935224c842fa191a4ae3e5, type: 2}
+  gearCount: 6
+  firstGearRatio: 3.5
+  topGearRatio: 0.85
+  gearOverlap: 0.2
+  upShiftPoint: 0.85
+  downShiftPoint: 0.1
+  gearRatios:
+  - 3.5
+  - 2.6371706
+  - 1.9870481
+  - 1.4971957
+  - 1.128103
+  - 0.85
+  gearMinSpeedPercentages:
+  - 0
+  - 0.053828053
+  - 0.14471842
+  - 0.2653463
+  - 0.42544118
+  - 0.63791597
+  gearMaxSpeedPercentages:
+  - 0.087934695
+  - 0.18998407
+  - 0.32542196
+  - 0.50517243
+  - 0.74373364
+  - 1
+  targetSpeedForNextGearPercentages:
+  - 0.07474449
+  - 0.16956067
+  - 0.29831642
+  - 0.46919852
+  - 0.6959898
+  - 1
+  targetSpeedForPreviousGearPercentages:
+  - 0
+  - 0.067443654
+  - 0.16278878
+  - 0.2893289
+  - 0.4572704
+  - 0.67412436

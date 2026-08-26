@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b07182cb7d023564c882c4ca0b694668
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/RenderPipelines/BRP/Prefabs/Car.prefab
+  uploadId: 891574

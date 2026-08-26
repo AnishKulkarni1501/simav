@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9c065613b8bafd442aac5ce0d56ea2c3
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/_Common/TT.Core.MonoBehaviourComponentSystem.V1/README.txt
+  uploadId: 891574

@@ -1,0 +1,17 @@
+{
+    "name": "TT.SMVC.V1",
+    "rootNamespace": "",
+    "references": [
+        "TT.Core.ReadOnlyAttribute.V1",
+        "TT.Core.MonoBehaviourComponentSystem.V1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

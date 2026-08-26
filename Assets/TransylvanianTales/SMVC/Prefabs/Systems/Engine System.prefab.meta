@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bafc03cb24086a94098a114b435a8362
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/Prefabs/Systems/Engine System.prefab
+  uploadId: 891574

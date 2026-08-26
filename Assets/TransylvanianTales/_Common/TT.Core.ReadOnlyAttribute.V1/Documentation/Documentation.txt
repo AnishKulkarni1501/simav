@@ -1,0 +1,122 @@
+READ ONLY ATTRIBUTE
+
+
+READ ONLY ATTRIBUTE
+
+
+----------------------------------------
+Author
+----------------------------------------
+
+Transylvanian Tales
+
+
+----------------------------------------
+Purpose
+----------------------------------------
+
+The ReadOnlyAttribute allows serialized fields to be displayed in the Unity Inspector while preventing user modification.
+
+It is useful for safely exposing runtime or internal values without allowing accidental edits.
+
+
+----------------------------------------
+Use Cases
+----------------------------------------
+
+- Debugging runtime values
+- Monitoring internal state
+- Displaying calculated values (e.g. speed, health, timers)
+- Preventing unintended Inspector edits
+
+
+----------------------------------------
+Motivation
+----------------------------------------
+
+Unity does not provide a built-in way to display a field in the Inspector as non-editable.
+
+Existing options have limitations:
+
+- Debug Inspector:
+  - Not commonly used in normal workflows
+  - Applies globally to the entire Inspector
+
+- [HideInInspector]&#58;   - Completely hides the field
+
+The ReadOnlyAttribute provides a selective, per-field solution.
+
+
+----------------------------------------
+How It Works
+----------------------------------------
+
+A custom PropertyDrawer disables GUI interaction while drawing the field:
+
+    GUI.enabled = false;
+    EditorGUI.PropertyField(position, property, label, true);
+    GUI.enabled = true;
+
+This ensures:
+
+- The field is drawn normally
+- User input is ignored
+- Values remain visible and updated
+
+
+----------------------------------------
+Usage
+----------------------------------------
+
+Public field:
+
+    [ReadOnly]
+    public int value;
+
+Private serialized field:
+
+    [SerializeField, ReadOnly]
+    private float speed;
+
+
+----------------------------------------
+Behavior
+----------------------------------------
+
+- Field is visible in the Inspector
+- Field is greyed out (non-editable)
+- Values update normally at runtime
+
+
+----------------------------------------
+Limitations
+----------------------------------------
+
+Collections (arrays / lists):
+
+- Users can still:
+  - Add elements
+  - Remove elements
+- Individual elements are read-only
+
+This is due to Unity's internal handling of collection drawing.
+
+
+----------------------------------------
+Extensibility
+----------------------------------------
+
+This implementation is intentionally minimal and designed for reuse.
+
+Possible extensions include:
+
+- Conditional read-only behavior
+- Full collection locking via custom drawers
+- Attribute parameters for dynamic control
+
+
+----------------------------------------
+Summary
+----------------------------------------
+
+The ReadOnlyAttribute is a simple utility that improves Inspector clarity and safety by allowing fields to be visible without being editable.

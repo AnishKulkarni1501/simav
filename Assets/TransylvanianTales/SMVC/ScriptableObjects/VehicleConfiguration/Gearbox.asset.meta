@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4944c0511d1cf8349acb1970844f45d7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/ScriptableObjects/VehicleConfiguration/Gearbox.asset
+  uploadId: 891574

@@ -1,0 +1,31 @@
+{
+    "name": "TT.SMVC.Demo",
+    "rootNamespace": "",
+    "references": [
+        "TT.Core.ReadOnlyAttribute.V1",
+        "TT.Core.MonoBehaviourComponentSystem.V1",
+        "TT.SMVC.V1",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "HAS_INPUT_SYSTEM"
+        },
+        {
+            "name": "com.unity.textmeshpro",
+            "expression": "3.0.0",
+            "define": "HAS_TMP"
+        }
+    ],
+    "noEngineReferences": false
+}

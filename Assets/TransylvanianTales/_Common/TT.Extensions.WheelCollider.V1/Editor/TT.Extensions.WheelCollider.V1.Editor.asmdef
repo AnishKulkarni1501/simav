@@ -1,0 +1,18 @@
+{
+    "name": "TT.Extensions.WheelCollider.V1.Editor",
+    "rootNamespace": "",
+    "references": [
+        "TT.Extensions.WheelCollider.V1"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

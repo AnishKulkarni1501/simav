@@ -1,0 +1,310 @@
+SMVC (SIMPLE MODULAR VEHICLE CONTROLLER)
+
+
+----------------------------------------
+Author
+----------------------------------------
+
+Transylvanian Tales
+
+
+----------------------------------------
+Purpose
+----------------------------------------
+
+SMVC is a modular vehicle framework designed to demonstrate a clean and extensible architecture for vehicle systems in Unity.
+
+It is intended as a flexible foundation and learning tool rather than a fully realistic or production-ready controller.
+
+
+----------------------------------------
+Core Architecture
+----------------------------------------
+
+SMVC is built on a three-layer architecture:
+
+- Data (ScriptableObjects)
+- Components (MonoBehaviours)
+- Systems (global processors)
+
+Flow:
+
+Components -> Registry -> Systems
+
+Each module follows this structure, ensuring consistency and modularity.
+
+
+----------------------------------------
+Vehicle Structure
+----------------------------------------
+
+A vehicle consists of:
+
+- A root Vehicle component
+- Multiple child module components (Engine, Wheels, etc.)
+
+All modules operate within the same hierarchy and interact indirectly through shared data and systems.
+
+
+----------------------------------------
+Vehicle Component Model
+----------------------------------------
+
+All modules inherit from:
+
+    VehicleComponent<T>
+
+Responsibilities:
+
+- Link to parent Vehicle automatically
+- Register in a global registry
+- Cache themselves per vehicle
+
+This enables:
+
+- Fast lookup of components per vehicle
+- Decoupled communication between modules
+
+
+----------------------------------------
+Vehicle Lookup
+----------------------------------------
+
+VehicleLookup provides helper methods:
+
+- GetVehicleComponent<T>()
+- GetVehicleComponents<T>()
+
+This allows systems or other logic to query components per vehicle without direct references.
+
+
+----------------------------------------
+Vehicle Registry
+----------------------------------------
+
+Tracks all active vehicles.
+
+Provides:
+
+- Access to all vehicles
+- Player vehicle management
+- Change notifications
+
+Useful for:
+
+- Switching controlled vehicles
+- Managing game state
+
+
+----------------------------------------
+Module Structure
+----------------------------------------
+
+Each module consists of:
+
+1. Configuration (ScriptableObject)
+2. Component (runtime state)
+3. System (processing logic)
+
+Example:
+
+Engine Module:
+- EngineConfiguration (data)
+- Engine (component)
+- EngineSystem (logic)
+
+
+----------------------------------------
+Built-in Modules
+----------------------------------------
+
+Engine:
+- Handles RPM, torque, and power distribution
+- Includes rev limiter and speed-based behavior
+
+Gearbox:
+- Manages gear selection and automatic shifting
+- Supports delays and gear transitions
+
+Brake:
+- Applies braking torque to wheels
+
+Steering Mechanism:
+- Controls wheel steering angles
+
+Wheel:
+- Links WheelCollider to visual representation
+
+Speedometer:
+- Calculates vehicle speed (KPH / MPH)
+
+Camera:
+- Simple chase camera for following vehicles
+
+Dashboard:
+- Visual needle system for UI feedback
+
+
+----------------------------------------
+System Execution Model
+----------------------------------------
+
+Different systems run in different Unity loops:
+
+- FixedUpdate:
+  - Engine
+  - Brake
+  - Steering
+
+- Update:
+  - Gearbox
+  - Speedometer
+
+- LateUpdate:
+  - Wheel visuals
+
+This ensures correct physics behavior and smooth visuals.
+
+
+----------------------------------------
+Gearbox Setup Utility
+----------------------------------------
+
+GearboxSetup provides automated gearbox configuration.
+
+It generates:
+
+- Gear ratios
+- Speed ranges
+- Shift points
+
+Based on:
+
+- Gear count
+- Speed distribution
+- Overlap settings
+
+This simplifies tuning and setup.
+
+
+----------------------------------------
+Data-Driven Design
+----------------------------------------
+
+All modules use ScriptableObjects for configuration.
+
+Advantages:
+
+- Easy tuning without code changes
+- Reusable configurations
+- Clear separation of data and logic
+
+
+----------------------------------------
+Decoupling Strategy
+----------------------------------------
+
+Modules do not reference each other directly.
+
+Instead:
+
+- Systems process components globally
+- Data is shared through components
+- Vehicle lookup is used when needed
+
+This results in:
+
+- Low coupling
+- High flexibility
+- Easier extension
+
+
+----------------------------------------
+Extending SMVC
+----------------------------------------
+
+New modules can be added by:
+
+1. Creating a new Component (VehicleComponent<T>)
+2. Creating a System
+3. (Optional) Creating a Configuration ScriptableObject
+
+Examples:
+
+- Suspension system
+- Traction control
+- AI driver
+- Custom input systems
+
+
+----------------------------------------
+Use Cases
+----------------------------------------
+
+SMVC is suitable for:
+
+- Learning modular architecture
+- Prototyping vehicle systems
+- Simple driving mechanics
+- Demo environments
+
+Not intended for:
+
+- Realistic simulation
+- Advanced vehicle physics
+
+
+----------------------------------------
+Performance Considerations
+----------------------------------------
+
+- Systems process components in batches
+- No per-frame allocations in core loops
+- Scales well with multiple vehicles
+
+Performance depends on:
+
+- Number of vehicles
+- Number of active modules
+
+
+----------------------------------------
+Limitations
+----------------------------------------
+
+- Simplified physics model
+- No advanced vehicle dynamics
+- No built-in input system
+- Not production-ready out of the box
+
+
+----------------------------------------
+Design Philosophy
+----------------------------------------
+
+SMVC is designed as a balance between:
+
+- Traditional MonoBehaviour workflows
+- Data-oriented design principles
+
+Goals:
+
+- Simplicity
+- Modularity
+- Extensibility
+
+
+----------------------------------------
+Namespace
+----------------------------------------
+
+TT.SMVC.V1
+
+
+----------------------------------------
+Summary
+----------------------------------------
+
+SMVC is a modular vehicle framework that separates data, state, and logic into clean, reusable systems.
+
+It provides a flexible foundation for building custom vehicle mechanics while remaining simple and easy to extend.

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7ca9692e87bba66408ebb9d818a91d4b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/Prefabs/Systems/Gearbox System.prefab
+  uploadId: 891574

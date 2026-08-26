@@ -1,0 +1,82 @@
+LICENSE
+
+
+----------------------------------------
+Scope
+----------------------------------------
+
+This license applies to all files within this directory and its subdirectories.
+
+If a child directory contains its own LICENSE file, that license takes precedence for those files.
+
+
+----------------------------------------
+Unity Asset Store License
+----------------------------------------
+
+This package is distributed as part of a Unity Asset Store product and is subject to the Unity Asset Store End User License Agreement (EULA).
+
+You may use this package in accordance with the terms of the Unity Asset Store EULA:
+https://unity.com/legal/as-terms
+
+
+----------------------------------------
+Usage Rights
+----------------------------------------
+
+You are granted the right to:
+
+- Use this package in personal and commercial Unity projects
+- Modify the source code for your own use
+- Include the compiled/runtime parts of this package in your games and applications
+
+
+----------------------------------------
+Restrictions
+----------------------------------------
+
+You may NOT:
+
+- Redistribute this package, in whole or in part, as a standalone product
+- Resell, sublicense, or share the source files outside of a Unity project
+- Include this package in another asset, template, or tool intended for resale on the Unity Asset Store or other marketplaces without explicit permission
+
+
+----------------------------------------
+No Warranty
+----------------------------------------
+
+This software is provided "as is", without warranty of any kind, express or implied, including but not limited to:
+
+- Fitness for a particular purpose
+- Merchantability
+- Non-infringement
+
+
+----------------------------------------
+Liability
+----------------------------------------
+
+In no event shall the authors or copyright holders be liable for:
+
+- Any claim, damages, or other liability
+- Whether in an action of contract, tort, or otherwise
+- Arising from the use of this software
+
+
+----------------------------------------
+Attribution
+----------------------------------------
+
+Attribution is not required, but you may credit:
+
+Transylvanian Tales
+
+
+----------------------------------------
+Notes
+----------------------------------------
+
+This package is part of a modular system and may be shared across multiple Unity assets.
+
+Each package is independently licensed under these terms unless otherwise specified.

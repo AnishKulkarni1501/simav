@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 51b8387c27c9fd4429b39ddfd1647871
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/Scripts/DashboardUIDisplayerDemo.cs
+  uploadId: 891574

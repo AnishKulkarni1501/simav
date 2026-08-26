@@ -23,6 +23,8 @@ public class CarsController : MonoBehaviour
     public float CurrentSpeed { get; private set; }
     public string CurrentMaterial { get; private set; } = "Unknown";
 
+    public GameObject[] events;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +42,9 @@ public class CarsController : MonoBehaviour
     void Update()
     {
         SetCams();
+        UpdateSpeed();
+        UpdateMaterial();
+        UpdateFPS();
     }
 
     void FixedUpdate()
@@ -93,6 +98,32 @@ public class CarsController : MonoBehaviour
         {
             CycleCamera();
         }
+    }
+    public int CollisionCount { get; private set; }
+
+    public float CurrentFPS { get; private set; }
+
+    private float fpsTimer = 0f;
+    private int frameCount = 0;
+
+
+    void UpdateFPS()
+    {
+        frameCount++;
+        fpsTimer += Time.unscaledDeltaTime;
+
+        if (fpsTimer >= 1f)
+        {
+            CurrentFPS = frameCount / fpsTimer;
+
+            frameCount = 0;
+            fpsTimer = 0f;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        CollisionCount++;
     }
 
     void CycleCamera()

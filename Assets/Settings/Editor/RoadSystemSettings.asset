@@ -19,7 +19,7 @@ MonoBehaviour:
     copyHitNormal: 0
     newRoadPrefab: {fileID: 5069528466591191570, guid: 4772468768a9b1e49b55b9f20cd8d6cc, type: 3}
   intersectionSettings:
-    newIntersectionPrefab: {fileID: 6326692353858338253, guid: 939ca84dc88d06d40a1ce939cfb6f1b3, type: 3}
+    newIntersectionPrefab: {fileID: 403653522733796218, guid: 7fe8ce0f404eb5d4aa6478e4f16ee46f, type: 3}
   drawNavigatorDebug: 0
   drawNavigatorDebugPoints: 0
   autoCalculateNavigator: 0

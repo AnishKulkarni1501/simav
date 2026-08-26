@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1dc4515599d23cf4581aed1dd629f208
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/Prefabs/Systems/Wheel System.prefab
+  uploadId: 891574

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9290b8cd3f5522c40965b8c083ca6391
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 359840
+  packageName: Simple Modular Vehicle Controller (SMVC)
+  packageVersion: 1.0.0
+  assetPath: Assets/TransylvanianTales/SMVC/Prefabs/Systems/Speedometer System.prefab
+  uploadId: 891574
