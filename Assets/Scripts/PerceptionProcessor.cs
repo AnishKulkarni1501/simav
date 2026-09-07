@@ -47,6 +47,29 @@ public class PerceptionProcessor : MonoBehaviour
 
 
     // =====================================================
+    // CURRENT PERCEPTION STATE
+    // =====================================================
+
+    [Header("Current Perception")]
+
+    /*
+     * Stores the latest processed perception state.
+     *
+     * Other systems such as:
+     * - AutonomousController
+     * - ML-Agents Agent
+     *
+     * can read this without directly interacting with
+     * DetectionClient or raw YOLO responses.
+     */
+    public List<PerceivedObject> CurrentPerceptions
+    {
+        get;
+        private set;
+    }
+
+
+    // =====================================================
     // DEBUGGING
     // =====================================================
 
@@ -61,6 +84,13 @@ public class PerceptionProcessor : MonoBehaviour
 
     private void Awake()
     {
+        // Initialize the perception state so that
+        // other components can safely access it
+        // before the first YOLO detection arrives.
+        CurrentPerceptions =
+            new List<PerceivedObject>();
+
+
         CalculateFocalLength();
 
         Debug.Log(
@@ -119,13 +149,30 @@ public class PerceptionProcessor : MonoBehaviour
         List<PerceivedObject> perceivedObjects =
             new List<PerceivedObject>();
 
+
+        // -------------------------------------------------
+        // HANDLE EMPTY / INVALID RESPONSE
+        // -------------------------------------------------
+
         if (
             response == null ||
             response.detections == null
         )
         {
+            /*
+             * No valid detections means the current
+             * perception state is empty.
+             */
+            CurrentPerceptions =
+                perceivedObjects;
+
             return perceivedObjects;
         }
+
+
+        // -------------------------------------------------
+        // PROCESS EACH YOLO DETECTION
+        // -------------------------------------------------
 
         foreach (
             Detection detection
@@ -141,14 +188,30 @@ public class PerceptionProcessor : MonoBehaviour
                 continue;
             }
 
+
+            // ==========================================
+            // ESTIMATE DISTANCE
+            // ==========================================
+
             float distance =
                 EstimateDistance(detection);
+
+
+            // ==========================================
+            // CALCULATE RELATIVE X
+            // ==========================================
 
             float relativeX =
                 CalculateRelativeX(detection);
 
+
+            // ==========================================
+            // CREATE PERCEIVED OBJECT
+            // ==========================================
+
             PerceivedObject perceived =
                 new PerceivedObject();
+
 
             // ==========================================
             // RAW YOLO DATA
@@ -221,6 +284,23 @@ public class PerceptionProcessor : MonoBehaviour
             }
         }
 
+
+        // =================================================
+        // UPDATE CURRENT PERCEPTION STATE
+        // =================================================
+
+        /*
+         * Store the latest processed perception result.
+         *
+         * This is the interface used by the autonomous
+         * controller and later by the ML-Agents Agent.
+         */
+        CurrentPerceptions =
+            perceivedObjects;
+
+
+        // Return the same perception state for existing
+        // systems that already use the return value.
         return perceivedObjects;
     }
 
@@ -252,6 +332,7 @@ public class PerceptionProcessor : MonoBehaviour
                 detection.y1
             );
 
+
         // Prevent division by zero
         if (
             boundingBoxHeight <= 1f
@@ -260,10 +341,12 @@ public class PerceptionProcessor : MonoBehaviour
             return -1f;
         }
 
+
         float referenceHeight =
             GetReferenceHeight(
                 detection.@class
             );
+
 
         // Unsupported class
         if (
@@ -273,12 +356,14 @@ public class PerceptionProcessor : MonoBehaviour
             return -1f;
         }
 
+
         float distance =
             (
                 focalLengthPixels *
                 referenceHeight
             ) /
             boundingBoxHeight;
+
 
         return distance;
     }
@@ -299,6 +384,7 @@ public class PerceptionProcessor : MonoBehaviour
             return -1f;
         }
 
+
         switch (
             className.ToLower()
         )
@@ -307,23 +393,29 @@ public class PerceptionProcessor : MonoBehaviour
             case "pedestrian":
                 return personHeight;
 
+
             case "car":
                 return carHeight;
+
 
             case "truck":
                 return truckHeight;
 
+
             case "bus":
                 return busHeight;
+
 
             case "motorcycle":
             case "motorbike":
                 return motorcycleHeight;
 
+
             case "autorickshaw":
             case "auto-rickshaw":
             case "auto":
                 return autorickshawHeight;
+
 
             default:
                 return -1f;
