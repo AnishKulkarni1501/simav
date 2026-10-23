@@ -2,10 +2,9 @@
 
 <b>Capstone 174 main project</b>
 
-<b>Currently using Unity(URP3D) 6000.3.10f1 - please use this version and not anything else!!!<b>
+<b>Currently using Unity(URP3D) 6000.3.10f1 - please use this version (or higher) and not anything else!!!<b>
 
-# Packages:
-<p>none as of current but please update if u use anything</p>
+Updated with RL nav working
 
 # Project Setup
 Clone the repository<br>
