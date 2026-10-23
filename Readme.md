@@ -4,8 +4,7 @@
 
 <b>Currently using Unity(URP3D) 6000.3.10f1 - please use this version and not anything else!!!<b>
 
-# Packages:
-<p>none as of current but please update if u use anything</p>
+
 
 # Project Setup
 Clone the repository<br>
